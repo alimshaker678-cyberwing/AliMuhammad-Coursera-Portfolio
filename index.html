@@ -9,7 +9,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
   <style>
     html { scroll-behavior: smooth; }
     .card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(2,6,23,0.08); }
@@ -237,6 +237,7 @@
     const CASUAL = '#F59E0B'; // orange
     const MEMBER = '#3B82F6'; // blue
     const GRID = '#E6EEF8';
+Chart.register(ChartDataLabels);
 
     // Chart 1: Weekly Volume (stacked)
     // Chart 1: Weekly Ride Volume by Rider Type
@@ -300,25 +301,87 @@ const weeklyVolume = new Chart(ctxWeekly, {
   }
 });
 
-    // Chart 2: Top Start Stations (horizontal grouped bars)
-    const startStations = [
-      'Canal St & Adams', 'Clinton St & Madison', 'Clark St & Wacker', 'Kingsbury St & Kinzie',
-      'Franklin St & Monroe', 'Canal St & Jackson', 'Clinton St & W. 8th', 'State St & Lake',
-      'Larrabee St & Kinzie', 'HQ/Other'
-    ];
-    const startCasual = [7000,5600,4500,3800,3200,3000,2900,2600,2400,1200];
-    const startMember = [280,210,190,140,120,110,100,90,80,40];
+// Chart 2: Top Start Stations by Rider Type (stacked horizontal bars)
+// Chart 2: Top Start Stations by Rider Type (with numeric labels)
+const startStations = [
+  'Canal St & Adams',
+  'Clinton St & Madison',
+  'Clinton St & Wabash',
+  'Kingsbury St & Kinzie',
+  'Columbus Dr & Randolph',
+  'Franklin St & Monroe',
+  'Canal St & Madison',
+  'Clinton St & Lake',
+  'HQ QR',
+  'Larrabee St & Kinzie'
+];
 
-    const ctxStart = document.getElementById('topStartStations').getContext('2d');
-    const topStartStations = new Chart(ctxStart, {
-      type: 'bar',
-      data: { labels: startStations, datasets: [{ label: 'Casual', data: startCasual, backgroundColor: CASUAL }, { label: 'Member', data: startMember, backgroundColor: MEMBER }] },
-      options: {
-        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-        scales: { x: { grid: { color: GRID }, ticks: { callback: v => v >= 1000 ? v/1000 + 'k' : v } }, y: { grid: { display: false } } },
-        plugins: { legend: { position: 'top' } }
+const startCasual = [7586, 6546, 5823, 4491, 4099, 3580, 3496, 3404, 3556, 3374];
+const startMember = [227, 251, 118, 135, 326, 131, 141, 176, 1, 176];
+
+const ctxStart = document.getElementById('topStartStations').getContext('2d');
+const topStartStations = new Chart(ctxStart, {
+  type: 'bar',
+  data: {
+    labels: startStations,
+    datasets: [
+      {
+        label: 'Casual',
+        data: startCasual,
+        backgroundColor: CASUAL,
+        stack: 'rides'
+      },
+      {
+        label: 'Member',
+        data: startMember,
+        backgroundColor: MEMBER,
+        stack: 'rides'
       }
-    });
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        stacked: true,
+        min: 0,
+        max: 8000,
+        grid: { color: GRID },
+        ticks: {
+          stepSize: 1000,
+          callback: v => (v >= 1000 ? v / 1000 + 'k' : v)
+        },
+        title: {
+          display: true,
+          text: 'Number of Rides',
+          color: '#475569',
+          font: { size: 13, style: 'italic' },
+          padding: { top: 8 }
+        }
+      },
+      y: {
+        stacked: true,
+        grid: { display: false }
+      }
+    },
+    plugins: {
+      legend: { position: 'top' },
+      datalabels: {
+        color: '#fff',
+        font: {
+          weight: 'bold',
+          size: 10
+        },
+        formatter: value => value.toLocaleString(),
+        anchor: 'center',
+        align: 'center'
+      }
+    }
+  },
+  plugins: [ChartDataLabels]
+});
 
     // Chart 3: Duration Distribution (stacked histogram-like)
     const durationBins = ['0-5','5-10','10-15','15-20','20-25','25-30','30-35','35-40','40-45','45-50','50+'];

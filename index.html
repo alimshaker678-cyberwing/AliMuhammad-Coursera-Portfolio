@@ -143,8 +143,8 @@
 
     <!-- CHARTS: replicate the 4 visuals from image -->
     <section class="bg-white rounded-2xl p-6 shadow card">
-      <h3 class="font-semibold text-slate-800 mb-4">Recreated Visual Dashboard</h3>
-      <p class="text-sm text-slate-600 mb-4">The charts below replicate the four visualizations from the original portfolio figure. Values were visually estimated from the image to preserve shape and proportion. Provide raw data for exact values if desired.</p>
+       <h3 class="font-semibold text-slate-800 mb-4">Visual Dashboard</h3>
+  <p class="text-sm text-slate-600 mb-4">Below are the key performance visualizations from the project dashboard, summarizing rider behavior and trends.</p>
 
       <div class="grid gap-6 grid-cols-1 lg:grid-cols-2">
         <!-- Weekly Volume -->
@@ -220,9 +220,16 @@
 
   </main>
 
-  <footer class="max-w-6xl mx-auto px-6 text-center text-sm text-slate-500 pb-12">
-    <p>© 2025 Ali Muhammad — Capstone Portfolio • Recreated charts (estimated data) • </p>
-  </footer>
+<footer class="bg-gradient-to-r from-sky-600 to-indigo-600 text-white mt-12 py-6">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <p class="text-sm opacity-90">
+      © 2025 <span class="font-semibold">Ali Muhammad</span> — Capstone Portfolio
+    </p>
+    <p class="text-xs mt-1 opacity-80">
+      Data Visualizations and Insights
+    </p>
+  </div>
+</footer>
 
   <!-- Chart.js initialization (estimated numeric data matched to visual proportions) -->
   <script>
@@ -232,31 +239,66 @@
     const GRID = '#E6EEF8';
 
     // Chart 1: Weekly Volume (stacked)
-    const ctxWeekly = document.getElementById('weeklyVolume').getContext('2d');
-    const weeklyVolume = new Chart(ctxWeekly, {
-      type: 'bar',
-      data: {
-        labels: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-        datasets: [
-          { label: 'Casual', data: [22000,32000,36000,38000,37000,34000,24000], backgroundColor: CASUAL, stack: 'rides' },
-          { label: 'Member', data: [8000,12000,14000,15000,14500,12500,9000], backgroundColor: MEMBER, stack: 'rides' }
-        ]
+    // Chart 1: Weekly Ride Volume by Rider Type
+const ctxWeekly = document.getElementById('weeklyVolume').getContext('2d');
+const weeklyVolume = new Chart(ctxWeekly, {
+  type: 'bar',
+  data: {
+    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    datasets: [
+      {
+        label: 'Casual',
+        data: [22000, 32000, 36000, 38000, 37000, 34000, 24000],
+        backgroundColor: CASUAL,
+        stack: 'rides'
       },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { position: 'top' } },
-        scales: {
-          x: { stacked: true, grid: { display: false } },
-          y: {
-            stacked: true,
-            grid: { color: GRID },
-            ticks: {
-              callback: v => v >= 1000 ? (v/1000) + 'k' : v
-            }
-          }
+      {
+        label: 'Member',
+        data: [8000, 12000, 14000, 15000, 14500, 12500, 9000],
+        backgroundColor: MEMBER,
+        stack: 'rides'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+  legend: { position: 'top' }
+},
+    scales: {
+      x: {
+        stacked: true,
+        grid: { display: false },
+        title: {
+          display: true,
+          text: 'Day of Week',
+          color: '#475569', // slate-600
+          font: { size: 13, style: 'italic' },
+          padding: { top: 8 }
+        }
+      },
+      y: {
+        stacked: true,
+        grid: { color: GRID },
+        beginAtZero: true,
+        min: 0,
+        max: 60000,
+        ticks: {
+          stepSize: 20000,
+          callback: (v) => (v / 1000) + 'k'
+        },
+        title: {
+          display: true,
+          text: 'Number of Rides',
+          color: '#475569',
+          font: { size: 13, style: 'italic' },
+          padding: { bottom: 8 }
         }
       }
-    });
+    }
+  }
+});
 
     // Chart 2: Top Start Stations (horizontal grouped bars)
     const startStations = [

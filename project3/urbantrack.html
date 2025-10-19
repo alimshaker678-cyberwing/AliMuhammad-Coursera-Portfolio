@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Urban Crash Focus • Car Racing Case Study — Ali Muhammad</title>
+  <meta name="description" content="Urban track crash analytics across players, car types, and diagnostics. Portfolio case study by Ali Muhammad."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in { opacity:0; transform: translateY(10px); transition: all 420ms ease; }
+    .fade-in.visible { opacity:1; transform: translateY(0); }
+    .rail-active { background: rgba(249,115,22,.14); border-left: 3px solid #f97316; color:#fde68a; }
+    .kpi { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0)); border: 1px solid rgba(255,255,255,.08); }
+    .glass { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); backdrop-filter: blur(6px); }
+    .chip { display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .65rem; border-radius:999px; border:1px solid rgba(249,115,22,.35); color:#f59e0b; font-weight:600; font-size:.8rem; background: rgba(249,115,22,.10); }
+    .shadow-deep { box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03); }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-slate-900 to-neutral-900 text-slate-100 selection:bg-orange-500/40 selection:text-white">
+
+  <!-- Left rail (sticky) -->
+  <aside class="hidden lg:block fixed left-0 top-0 h-full w-64 border-r border-white/10 bg-black/20 backdrop-blur-sm">
+    <div class="px-5 py-6">
+      <div class="text-xs uppercase tracking-widest text-slate-400 mb-4">Navigate</div>
+      <nav id="rail" class="space-y-1 text-sm">
+        <a href="#hero" class="block px-3 py-2 rounded-md hover:bg-white/5">Intro</a>
+        <a href="#spotlight" class="block px-3 py-2 rounded-md hover:bg-white/5">Urban Spotlight</a>
+        <a href="#comparisons" class="block px-3 py-2 rounded-md hover:bg-white/5">Track Comparisons</a>
+        <a href="#players" class="block px-3 py-2 rounded-md hover:bg-white/5">Players & Heatmap</a>
+        <a href="#cars" class="block px-3 py-2 rounded-md hover:bg-white/5">Car Types</a>
+        <a href="#diagnostics" class="block px-3 py-2 rounded-md hover:bg-white/5">Diagnostics</a>
+        <a href="#summary" class="block px-3 py-2 rounded-md hover:bg-white/5">Summary</a>
+        <a href="#pdf" class="block px-3 py-2 rounded-md hover:bg-white/5">PDF</a>
+      </nav>
+      <div class="mt-8 border-t border-white/10 pt-4 text-xs text-slate-500">
+        Created by <span class="text-orange-400 font-semibold">Ali Muhammad</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main column -->
+  <div class="lg:ml-64">
+    <!-- HERO -->
+    <header id="hero" class="relative border-b border-white/10">
+      <div class="max-w-7xl mx-auto px-6 py-10">
+        <div class="flex flex-col xl:flex-row gap-6 items-start">
+          <div class="flex-1">
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+              Urban Crash Focus — Car Racing Case Study
+            </h1>
+            <p class="mt-2 text-slate-300 max-w-2xl">
+              A diagnostic deep-dive into crash dynamics on <span class="text-orange-400 font-semibold">Urban tracks</span>:
+              understanding how players, car types, lap time, and speed interact to raise crash risk—and how to act on it.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">Theme: Urban Safety</span>
+              <span class="chip">Tools: R, Excel</span>
+              <span class="chip">Audience: Ops & Coaching</span>
+            </div>
+          </div>
+
+          <!-- KPI chips -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-2 gap-3 w-full xl:w-auto">
+            <div class="kpi rounded-xl p-4 shadow-deep">
+              <div class="text-xs uppercase tracking-widest text-slate-400">Urban Crash Share</div>
+              <div class="text-2xl font-extrabold text-orange-400">Highest</div>
+              <div class="text-xs text-slate-400 mt-1">vs Circuit & Desert</div>
+            </div>
+            <div class="kpi rounded-xl p-4 shadow-deep">
+              <div class="text-xs uppercase tracking-widest text-slate-400">Top Crasher</div>
+              <div class="text-xl font-bold">P010</div>
+              <div class="text-xs text-slate-400 mt-1">Urban intensity</div>
+            </div>
+            <div class="kpi rounded-xl p-4 shadow-deep">
+              <div class="text-xs uppercase tracking-widest text-slate-400">Best Avg Position</div>
+              <div class="text-xl font-bold">P003</div>
+              <div class="text-xs text-slate-400 mt-1">Consistent finisher</div>
+            </div>
+            <div class="kpi rounded-xl p-4 shadow-deep">
+              <div class="text-xs uppercase tracking-widest text-slate-400">Risky Car Type</div>
+              <div class="text-xl font-bold text-amber-300">JPN</div>
+              <div class="text-xs text-slate-400 mt-1">Elevated Urban crashes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- URBAN SPOTLIGHT -->
+    <section id="spotlight" class="max-w-7xl mx_auto px-6 py-10">
+      <div class="bg-gradient-to-br from-neutral-900/70 to-slate-900/50 rounded-2xl border border-white/10 p-6 shadow-deep fade-in">
+        <div class="flex flex-col lg:flex-row gap-6 items-start">
+          <!-- Text Section -->
+          <div class="flex-1">
+            <h2 class="text-2xl font-bold text-orange-400">Spotlight: Total Crashes by Track Type</h2>
+            <p class="text-slate-300 mt-3">
+              This case study explores crash dynamics on simulated racing tracks with a focused lens on <span class="text-orange-300 font-semibold">Urban environments</span>.
+              Using R and ggplot2, the analysis combines player behavior, car performance, and track design to reveal patterns in crash frequency and race outcomes.
+            </p>
+            <p class="text-slate-400 mt-3 text-sm">
+              Dataset: 10 players × 100 races — variables include lap time, speed, car type, and track type.
+            </p>
+
+            <div class="mt-4">
+              <h3 class="text-lg font-semibold text-white mb-2">Key Findings</h3>
+              <ul class="list-disc ml-5 space-y-1 text-slate-200">
+                <li>Urban tracks have the <span class="text-orange-300 font-semibold">highest crash rate</span> yet the best average race position.</li>
+                <li>Player <span class="text-orange-300 font-semibold">P010</span> crashes most often, while <span class="font-semibold text-white">P003</span> consistently ranks highest.</li>
+                <li><span class="text-amber-300 font-semibold">Japanese car types</span> show elevated crash counts on Urban tracks.</li>
+                <li>Speed and lap time affect crash frequency, though not always predictably.</li>
+                <li>Multi-variable diagnostics uncover risky player–car–track combinations.</li>
+              </ul>
+            </div>
+
+            <div class="mt-5">
+              <h3 class="text-lg font-semibold text-white mb-2">Insight</h3>
+              <p class="text-slate-300">
+                Urban tracks record the <span class="text-orange-300 font-semibold">highest crash count</span>, followed by Desert and Circuit.
+                The likely reason: tighter turns, unpredictable layouts, and complex visuals.
+              </p>
+              <p class="text-slate-400 mt-2 text-sm">
+                <strong>Conclusion:</strong> Urban environments present the greatest safety challenge — setting the foundation for deeper player and car performance diagnostics.
+              </p>
+            </div>
+          </div>
+
+          <!-- Chart Image -->
+          <div class="w-full lg:w-[48%]">
+            <img src="charts/chart1.png" alt="Bar chart comparing total crashes across track types (Circuit, Desert, Urban)"
+                 class="w-full rounded-xl border border-white/10 shadow-deep">
+            <p class="text-xs text-slate-400 mt-2">Chart 1: Total Crashes by Track Type — Urban leads in crash frequency.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACK COMPARISONS (trend line only) -->
+    <section id="comparisons" class="max-w-7xl mx-auto px-6 py-6">
+      <div class="grid md:grid-cols-1 gap-6">
+        <article class="glass rounded-2xl p-5 border border-white/10 fade-in">
+          <h3 class="font-semibold text-lg">Lap Time vs. Crashes on Urban Tracks (Trend Line)</h3>
+          <p class="text-slate-300 mt-1">
+            Each point is a lap, colored by crash intensity. The dashed trend line shows a slight upward slope,
+            suggesting a modest correlation between longer lap times and higher crash frequency.
+          </p>
+          <img src="charts/chart5.png" alt="Scatter with dashed trend line showing slight increase in crashes with longer lap times"
+               class="w-full rounded-lg mt-3 border border-white/10">
+          <div class="mt-3 text-slate-300 text-sm">
+            <strong>Conclusion:</strong> Longer laps may signal poor control, fatigue, or inefficient strategy.
+            This trend supports deeper investigation into pacing, player skill, and track complexity.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PLAYERS & HEATMAP -->
+    <section id="players" class="max-w-7xl mx-auto px-6 py-10">
+      <div class="grid lg:grid-cols-5 gap-6 items-start">
+        <div class="lg:col-span-2 glass rounded-2xl p-6 border border-white/10 fade-in">
+          <h3 class="text-xl font-bold">Player Performance Notes</h3>
+          <ul class="mt-3 space-y-2 text-slate-200">
+            <li><span class="font-semibold text-white">P003</span> — Best average position; stable across tracks.</li>
+            <li><span class="font-semibold text-orange-300">P010</span> — Highest Urban crash intensity; priority for coaching.</li>
+            <li><span class="font-semibold">P007</span> — Generally lower crash footprint.</li>
+          </ul>
+          <p class="text-slate-400 text-sm mt-3">
+            The heatmap helps pinpoint which players struggle on which track types, guiding targeted coaching,
+            car selection, adaptive difficulty, and personalized feedback.
+          </p>
+        </div>
+        <div class="lg:col-span-3 fade-in">
+          <img src="charts/chart6.png" alt="Heatmap of crash intensity by player (rows) across track types (columns), with Urban darkest for P010"
+               class="w-full rounded-2xl border border-white/10 shadow-deep">
+          <p class="text-xs text-slate-400 mt-2">
+            Chart 6: Crash Intensity by Player & Track — Urban column highlights concentration for P009 and P010; P007/P003 remain lower.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARS -->
+    <section id="cars" class="max-w-7xl mx-auto px-6 py-6">
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- LEFT CARD: Urban Crashes by Car Type -->
+        <article class="glass rounded-2xl p-6 border border-white/10 fade-in">
+          <h3 class="text-xl font-bold text-orange-400">Urban Track Crashes by Car Type</h3>
+          <p class="text-slate-300 mt-2">
+            Crash totals on <span class="text-orange-300 font-semibold">Urban tracks</span> by car origin: <strong>Japan (JPN)</strong>,
+            <strong>USA</strong>, <strong>Canada (CAN)</strong>, and <strong>Brazil (BRA)</strong>.
+          </p>
+          <p class="text-slate-300 mt-2">
+            <strong>JPN</strong> records the highest (~25), followed by <strong>USA</strong> (~17), <strong>CAN</strong> (~10), and <strong>BRA</strong> (~5).
+          </p>
+
+          <img src="charts/chart3.png"
+               alt="Bar chart showing Urban crashes by car type: JPN highest, then USA, CAN, BRA"
+               class="w-full rounded-xl border border-white/10 mt-4 shadow-deep">
+
+          <div class="mt-4">
+            <h4 class="text-white font-semibold text-lg">Conclusion</h4>
+            <p class="text-slate-300 mt-2">
+              Car type shapes Urban crash frequency. JPN models may be faster or more sensitive, requiring handling/tuning changes
+              and targeted driver training for dense layouts.
+            </p>
+          </div>
+        </article>
+
+        <!-- RIGHT CARD: Average Race Position by Player -->
+        <article class="glass rounded-2xl p-6 border border-white/10 fade-in">
+          <h3 class="text-xl font-bold text-orange-400">Average Race Position by Player</h3>
+          <p class="text-slate-300 mt-2">
+            Rankings by <span class="text-orange-300 font-semibold">average race position</span> across all tracks:
+            <strong>P003</strong> leads (~2) while <strong>P008</strong> trails (~6.5).
+          </p>
+
+          <img src="charts/chart2.png"
+               alt="Bar chart showing average race position for each player (P003–P010), with P003 leading"
+               class="w-full rounded-xl border border-white/10 mt-4 shadow-deep">
+
+          <div class="mt-4">
+            <h4 class="text-white font-semibold text-lg">Conclusion</h4>
+            <p class="text-slate-300 mt-2">
+              <strong>P003</strong> shows consistent control and strategy; <strong>P008</strong> may benefit from support in car choice,
+              track familiarity, and driving tactics — insights useful for coaching and matchmaking.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- DIAGNOSTICS -->
+    <section id="diagnostics" class="max-w-7xl mx-auto px-6 py-10">
+      <div class="bg-neutral-900/70 rounded-2xl p-6 border border-white/10 fade-in">
+        <div class="flex flex-col lg:flex-row gap-6 items-start">
+          <div class="flex-1">
+            <h3 class="text-2xl font-bold">Urban Track Crash Diagnostic</h3>
+            <p class="text-slate-300 mt-2">
+              Lap time vs. crash count; color = player ID, shape = car type, size = speed.
+              Clusters of higher crashes appear around the 90–110s lap-time window for certain players/car types.
+            </p>
+            <ul class="list-disc ml-5 mt-3 space-y-1 text-slate-200">
+              <li>Crash risk reflects interplay of lap time, speed, player behavior, and car dynamics.</li>
+              <li>Specific player–car combinations at higher speeds drive more crashes within the critical window.</li>
+              <li>Use to target tuning, driver coaching, and track redesign.</li>
+            </ul>
+          </div>
+          <div class="w-full lg:w-[48%]">
+            <img src="charts/chart4.png" alt="Scatter: lap time vs crashes with color by player, shape by car type, size by speed"
+                 class="w-full rounded-xl border border-white/10 shadow-deep">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUMMARY & ACTIONS -->
+    <section id="summary" class="max-w-7xl mx-auto px-6 py-8">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="glass rounded-2xl p-6 border border-white/10 fade-in">
+          <h4 class="text-lg font-semibold">Key Takeaways</h4>
+          <ul class="mt-3 space-y-2 text-slate-200">
+            <li>Urban has the <span class="text-orange-300 font-semibold">highest crash rate</span>.</li>
+            <li><span class="text-orange-300 font-semibold">P010</span> concentrates risk; <span class="font-semibold">P003</span> remains consistent.</li>
+            <li><span class="text-amber-300 font-semibold">JPN</span> cars need handling adjustments on Urban layouts.</li>
+          </ul>
+        </div>
+        <div class="glass rounded-2xl p-6 border border-white/10 fade-in">
+          <h4 class="text-lg font-semibold">Recommendations</h4>
+          <ul class="mt-3 space-y-2 text-slate-200">
+            <li>Coaching for high-risk players with Urban-specific drills.</li>
+            <li>Car tuning for Urban (traction/handling) — especially for JPN type.</li>
+            <li>Use diagnostics to inform track redesign or adaptive difficulty.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PDF -->
+    <section id="pdf" class="max-w-7xl mx-auto px-6 pb-16">
+      <div class="rounded-2xl p-6 border border-white/10 bg-black/30 fade-in">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h4 class="text-lg font-semibold">Full Case Study (PDF)</h4>
+            <p class="text-slate-400 text-sm">Open inline or in a new tab for details.</p>
+          </div>
+          <div class="flex gap-3">
+            <a href="../pdf/Portfolio Case Study for car race.pdf" target="_blank"
+               class="px-4 py-2 rounded-md border border-orange-400/50 text-orange-300 hover:bg-orange-500/10">
+              📄 Open in new tab
+            </a>
+            <a href="#hero"
+               class="px-4 py-2 rounded-md border border-white/10 hover:bg-white/5">
+              ↑ Back to top
+            </a>
+          </div>
+        </div>
+        <object data="../pdf/Portfolio Case Study for car race.pdf#page=1"
+                type="application/pdf"
+                class="w-full h-[680px] mt-4 rounded-xl border border-white/10">
+          <p class="text-sm">Your browser can't display the PDF. <a class="text-orange-300 underline" href="../pdf/Portfolio Case Study for car race.pdf" target="_blank">Open the PDF</a>.</p>
+        </object>
+      </div>
+    </section>
+  </div>
+
+  <!-- Floating back-to-top -->
+  <a href="#hero" class="fixed bottom-6 right-6 px-3 py-2 rounded-full bg-orange-500 text-black font-semibold shadow-lg hover:bg-orange-400 transition">
+    ↑
+  </a>
+
+  <!-- Scroll animations + rail spy -->
+  <script>
+    // fade-ins
+    const fades = document.querySelectorAll('.fade-in');
+    const io = new IntersectionObserver((entries)=> {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: .12 });
+    fades.forEach(f => io.observe(f));
+
+    // simple scroll-spy for left rail
+    const sections = ['hero','spotlight','comparisons','players','cars','diagnostics','summary','pdf']
+      .map(id => document.getElementById(id));
+    const links = Array.from(document.querySelectorAll('#rail a'));
+    const spy = () => {
+      let activeId = 'hero';
+      for (const s of sections) {
+        const rect = s.getBoundingClientRect();
+        if (rect.top <= 120 && rect.bottom >= 120) { activeId = s.id; break; }
+      }
+      links.forEach(a => {
+        a.classList.remove('rail-active');
+        if (a.getAttribute('href') === '#'+activeId) a.classList.add('rail-active');
+      });
+    };
+    document.addEventListener('scroll', spy, { passive:true });
+    window.addEventListener('load', spy);
+  </script>
+</body>
+</html>

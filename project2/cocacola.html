@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coca-Cola Stock Dashboard • Ali Muhammad</title>
+  <meta name="description" content="Coca-Cola stock historical visualization (1995–2025). Financial analysis, volatility, seasonality, and volume insights by Ali Muhammad." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .card-sheen {
+      background-image: linear-gradient(120deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.05) 40%, rgba(0,0,0,0) 100%);
+    }
+    .fade-in { opacity: 0; transform: translateY(12px); transition: all 450ms ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .chart-placeholder { 
+      height: 240px; 
+      display:flex; align-items:center; justify-content:center; 
+      border: 1px dashed #e5e7eb; border-radius: .75rem;
+      background: linear-gradient(180deg,#fff,#fff0);
+    }
+    .focus-outline:focus { outline: 3px solid rgba(239,68,68,0.25); outline-offset: 3px; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 leading-relaxed">
+
+  <!-- Header -->
+  <header class="w-full bg-gradient-to-r from-red-50 to-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-red-700">Coca-Cola Stock Dashboard</h1>
+        <p class="text-sm text-gray-600 mt-1">Tableau Visualization • Historical data 1995–2025</p>
+      </div>
+      <div class="text-sm text-gray-600 flex flex-col sm:flex-row gap-2 items-start sm:items-center">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 10-8 0v1H5a2 2 0 00-2 2v6a2 2 0 002 2h14a2 2 0 002-2v-6a2 2 0 00-2-2h-3V7z"/></svg>
+          <span>Analyst: <strong class="text-gray-800">Ali Muhammad</strong></span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
+          <span class="opacity-80">Tools: <strong>Tableau, Excel</strong></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="max-w-6xl mx-auto px-6 py-10">
+
+    <!-- Overview -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+      <article class="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm card-sheen fade-in" id="overview">
+        <h2 class="text-xl font-semibold text-red-700 mb-2">Project Overview & Objective</h2>
+        <p class="text-gray-700 mb-3">
+          <strong>Objective:</strong> Analyze Coca-Cola's historical stock data (1995–2025) to uncover long-term trends, price volatility, seasonal patterns, and trading volume behavior. This dashboard demonstrates data cleaning, calculated fields, and multi-layered Tableau storytelling for financial insights.
+        </p>
+        <h3 class="text-sm font-semibold text-gray-700 mt-4">My Contribution</h3>
+        <ul class="list-disc ml-5 mt-2 text-gray-700">
+          <li>Cleaned and validated raw stock data (date parsing, null handling, numeric formatting).</li>
+          <li>Created calculated fields, designed five Tableau sheets, and built dashboard layouts.</li>
+          <li>Structured insights and annotations for client-ready reporting.</li>
+        </ul>
+        <h3 class="text-sm font-semibold text-gray-700 mt-4">Why this project matters</h3>
+        <p class="text-gray-700">Useful for investor dashboards, market behavior analysis, and professional Tableau visualizations.</p>
+      </article>
+
+      <aside class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4 fade-in">
+        <div>
+          <h4 class="text-sm font-semibold text-gray-700">Project Title</h4>
+          <p class="text-red-700 font-semibold">Coca-Cola Stock Market Trend Analysis (1995–2025)</p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-gray-700">Role</h4>
+          <p>Data Analyst & Visualization Designer</p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-gray-700">Data Source</h4>
+          <p>Coca_Cola_historical_data.csv</p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-gray-700">Skills Demonstrated</h4>
+          <p class="text-sm text-gray-700">Tableau • Excel • Data cleaning • Financial analysis • Dashboard storytelling</p>
+        </div>
+        <div class="pt-2">
+          <button id="printBtn" class="w-full text-sm bg-red-600 hover:bg-red-700 text-white py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-200 focus:ring-offset-1">Print / Export</button>
+          <a id="tblLink" class="mt-2 inline-block text-sm text-red-600 hover:underline" href="#">Open in Tableau Public</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Workflow -->
+    <section class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm mb-10 fade-in">
+      <h3 class="text-lg font-semibold text-gray-800 mb-3">Workflow — From Raw Data to Insight</h3>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm text-gray-700">
+        <div class="p-3 border border-gray-100 rounded-lg"><strong>Data Cleaning</strong><p class="mt-2">Fixed date formats, removed nulls, verified ticker (KO).</p></div>
+        <div class="p-3 border border-gray-100 rounded-lg"><strong>Data Structuring</strong><p class="mt-2">Created calculated fields, extracted YEAR/MONTH.</p></div>
+        <div class="p-3 border border-gray-100 rounded-lg"><strong>Visualization</strong><p class="mt-2">Used line, bar, dual-axis, and volatility charts.</p></div>
+        <div class="p-3 border border-gray-100 rounded-lg"><strong>Export & Presentation</strong><p class="mt-2">Exported visuals and arranged layout for delivery.</p></div>
+      </div>
+    </section>
+
+    <!-- Sheets -->
+   <!-- Sheets -->
+<section class="mb-12 fade-in">
+  <h3 class="text-2xl font-semibold text-gray-800 mb-4">Key Visuals (Sheets)</h3>
+
+  <div class="space-y-6">
+
+    <!-- Sheet 1 -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-md bg-red-100 text-red-700 font-semibold">1</span>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-800">Coca-Cola Yearly Trend (1995–2025)</h4>
+          <p class="text-sm text-gray-600">Line chart showing average quantity (Avg. Qats) across 30 years, color-coded by SUM(Volume).</p>
+        </div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <img src="charts/chart1.png" alt="Coca-Cola Yearly Trend Chart" class="w-full rounded-xl shadow-md border border-gray-100">
+          <p class="text-sm text-gray-600 mt-3">
+            Key insights: steady growth in average quantity post-2010; sharp rise in both volume and quantity after 2020. Color gradient reveals volume intensity across years.
+          </p>
+        </div>
+        <div>
+          <h5 class="font-semibold text-gray-800">Interpretation</h5>
+          <ul class="list-disc ml-5 mt-2 text-gray-700">
+            <li>Highlights long-term stability and post-2010 acceleration in performance.</li>
+            <li>Helps investors visualize consumption and trading behavior over time.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sheet 2 -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-md bg-red-100 text-red-700 font-semibold">2</span>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-800">Avg Close by Month (2000–2010)</h4>
+          <p class="text-sm text-gray-600">Bar chart of monthly average closing prices with shading intensity based on SUM(Volume).</p>
+        </div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <img src="charts/chart2.png" alt="Average Close by Month Chart" class="w-full rounded-xl shadow-md border border-gray-100">
+          <p class="text-sm text-gray-600 mt-3">
+            Key insights: March and April show consistently higher average closes; volume peaks align with price surges — useful for identifying seasonal investment opportunities.
+          </p>
+        </div>
+        <div>
+          <h5 class="font-semibold text-gray-800">Interpretation</h5>
+          <ul class="list-disc ml-5 mt-2 text-gray-700">
+            <li>Exposes seasonality and recurring investor sentiment patterns.</li>
+            <li>Ideal for comparing performance across months and trend forecasting.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sheet 3 -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-md bg-red-100 text-red-700 font-semibold">3</span>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-800">Price vs Volume (2000–2025)</h4>
+          <p class="text-sm text-gray-600">Dual-axis bar chart comparing Avg Close and Volume annually.</p>
+        </div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <img src="charts/chart3.png" alt="Price vs Volume Chart" class="w-full rounded-xl shadow-md border border-gray-100">
+          <p class="text-sm text-gray-600 mt-3">
+            Key insights: Volume spikes in 2008–2009 reflect financial crisis impact; price recovery visible post-2010 and peaks again in 2021; divergence between price and volume suggests changing investor behavior.
+          </p>
+        </div>
+        <div>
+          <h5 class="font-semibold text-gray-800">Interpretation</h5>
+          <ul class="list-disc ml-5 mt-2 text-gray-700">
+            <li>Connects market stress events with trading volume changes.</li>
+            <li>Highlights how post-crisis recovery evolved in pricing structure.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sheet 4 -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-md bg-red-100 text-red-700 font-semibold">4</span>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-800">Close Price Evolution (2000–2014)</h4>
+          <p class="text-sm text-gray-600">Bar chart tracking year-over-year close price evolution, color-coded by year with volume filters.</p>
+        </div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <img src="charts/chart4.png" alt="Close Price Evolution Chart" class="w-full rounded-xl shadow-md border border-gray-100">
+          <p class="text-sm text-gray-600 mt-3">
+            Key insights: 2008–2009 dip aligns with global downturn; strong recovery between 2011 and 2014; volume filter adds deeper trading intensity analysis.
+          </p>
+        </div>
+        <div>
+          <h5 class="font-semibold text-gray-800">Interpretation</h5>
+          <ul class="list-disc ml-5 mt-2 text-gray-700">
+            <li>Clearly depicts economic recovery timeline post-crisis.</li>
+            <li>Offers insights into how close prices stabilized after volatility.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sheet 5 -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-md bg-red-100 text-red-700 font-semibold">5</span>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-800">Price Volatility Tracker (2000–2014)</h4>
+          <p class="text-sm text-gray-600">Chart visualizing yearly price range (High–Low) shaded by AVG(Volume).</p>
+        </div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <img src="charts/chart5.png" alt="Price Volatility Tracker Chart" class="w-full rounded-xl shadow-md border border-gray-100">
+          <p class="text-sm text-gray-600 mt-3">
+            Key insights: 2008 shows highest volatility; stable price ranges during 2004–2007 and 2011–2013; volume shading highlights high-risk periods.
+          </p>
+        </div>
+        <div>
+          <h5 class="font-semibold text-gray-800">Interpretation</h5>
+          <ul class="list-disc ml-5 mt-2 text-gray-700">
+            <li>Pinpoints market turbulence with precise volatility measures.</li>
+            <li>Helps traders identify calm vs. risky investment windows.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <!-- Footer -->
+   <footer class="bg-gradient-to-r from-red-50 to-white border-t border-gray-200 rounded-t-2xl p-6 shadow-inner text-sm flex flex-col md:flex-row items-center justify-between gap-4">
+  <!-- Left side: contact info -->
+  <div class="text-center md:text-left">
+    <p class="text-gray-700 font-medium">
+      Created by <strong class="text-red-700">Ali Muhammad</strong> — Data Analyst
+    </p>
+    <p class="text-gray-600 mt-1">
+      Email: <a href="mailto:alimshaker678@gmail.com" class="text-red-600 hover:text-red-700 hover:underline transition">alimshaker678@gmail.com</a> 
+      • Cell: <a href="tel:+923461947475" class="text-red-600 hover:text-red-700 hover:underline transition">+92-346-1947475</a>
+    </p>
+  </div>
+
+  <!-- Right side: navigation + copyright -->
+  <div class="flex flex-col sm:flex-row items-center gap-3 text-gray-600">
+    <a href="#overview" class="px-4 py-2 rounded-md border border-gray-200 hover:bg-red-50 hover:text-red-700 transition">
+      ↑ Back to top
+    </a>
+    <p class="text-xs text-gray-500 mt-2 sm:mt-0">© 2025 Ali Muhammad. All rights reserved.</p>
+  </div>
+</footer>
+
+  </main>
+
+  <script>
+    // fade-in effect
+    document.addEventListener('DOMContentLoaded', () => {
+      const fades = document.querySelectorAll('.fade-in');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.12 });
+      fades.forEach(f => io.observe(f));
+    });
+
+    // print/export button
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+  </script>
+</body>
+</html>

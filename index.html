@@ -1,542 +1,128 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ali Muhammad — Capstone Portfolio</title>
-
-  <!-- Tailwind CDN -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ali Muhammad | Data Analyst Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+  <!-- Fade-in animation styles -->
   <style>
-    html {
-      scroll-behavior: smooth;
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(2, 6, 23, 0.08);
+    .fade-in-up {
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
     }
-
-    .chart-canvas {
-      width: 100% !important;
-      height: 260px !important;
-    }
-
-    @media (min-width: 1024px) {
-      .chart-canvas {
-        height: 260px !important;
-      }
-    }
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
   </style>
 </head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 min-h-screen flex flex-col">
 
-<body class="bg-slate-50 text-gray-800">
+  <!-- Full-Width Header -->
+  <header class="relative bg-gradient-to-r from-blue-600 to-blue-400 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 py-12 md:py-16 flex flex-col md:flex-row items-center justify-between">
+      <div class="text-center md:text-left fade-in-up">
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight">Ali Muhammad</h1>
+        <p class="text-lg md:text-xl text-blue-100 mt-2">Professional Data Analyst</p>
+      </div>
 
-  <!-- HERO -->
-  <header class="bg-gradient-to-r from-sky-600 to-indigo-600 text-white py-12">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-        <div>
-          <h1 class="text-3xl lg:text-4xl font-semibold">Ali Muhammad</h1>
-          <p class="mt-1 opacity-90">Analyst — Google Data Analytics Professional Certificate</p>
-          <p class="mt-3 max-w-2xl text-sm lg:text-base opacity-90">
-            I’m a data analyst with a master’s degree in Urdu and a passion for clear, impactful communication.
-            I specialize in Tableau, R, Excel, and SQL, and I’m expanding with Python and Power BI. I design dashboards
-            that balance usability, aesthetics, and business relevance.
-          </p>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <a href="pdf/Ali_Muhammad_Capstone_Portfolio.pdf.pdf" download
-            class="inline-block bg-white text-sky-700 hover:bg-sky-50 px-4 py-2 rounded-full font-medium shadow">
-            📄 Download Portfolio PDF
+      <div class="mt-6 md:mt-0 text-center md:text-right fade-in-up delay-1">
+        <p class="text-blue-100">📞 <span class="font-semibold">+92-346-1947475</span></p>
+        <p>📧 
+          <a href="mailto:alimshaker678@gmail.com" class="text-white hover:underline">
+            alimshaker678@gmail.com
           </a>
-          <a href="#project"
-            class="inline-block bg-white/10 border border-white/20 text-white px-4 py-2 rounded-full hover:bg-white/20">
-            View Project
-          </a>
-        </div>
+        </p>
       </div>
     </div>
+
+    <!-- Decorative Shape -->
+    <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
   </header>
 
-  <!-- <main id="project" class="max-w-6xl mx-auto px-6 -mt-10 mb-16 space-y-8"> -->
-  <main id="project" class="max-w-6xl mx-auto px-6 mt-8 mb-16 space-y-8">
-    <!-- PROJECT SUMMARY -->
-    <section class="bg-white rounded-2xl p-6 shadow card">
-      <div class="md:flex md:items-start md:gap-8">
-        <div class="flex-1">
-          <h2 class="text-xl font-semibold text-slate-800">Capstone Portfolio: Bike-Share Behavior Analysis</h2>
-          <p class="mt-2 text-slate-600">
-            <strong>Project Title:</strong> Understanding Rider Behavior in Urban Bike-Share Systems<br>
-            <strong>Analyst:</strong> Ali Muhammad<br>
-            <strong>Certificate:</strong> Google Data Analytics Professional Certificate
-          </p>
-        </div>
+  <!-- Intro Section -->
+  <section class="text-center py-14 px-4 fade-in-up delay-2">
+    <h2 class="text-3xl md:text-4xl font-semibold text-blue-700 mb-4">Turning Data into Decisions</h2>
+    <p class="text-gray-600 max-w-2xl mx-auto">
+      I specialize in analyzing complex datasets and presenting insights that empower business growth.
+      Below are some of my data analysis projects — each crafted with precision, logic, and clarity.
+    </p>
+  </section>
 
-        <div class="mt-4 md:mt-0 text-sm text-slate-500">
-          <p><strong>Focus:</strong> rider behavior, fraud detection, and gaming analytics (portfolio projects)</p>
-          <p class="mt-2">I emphasize accessibility (high-contrast visuals, direct labeling) and stakeholder-focused
-            storytelling.</p>
-        </div>
+  <!-- Projects Section -->
+  <section class="px-6 pb-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto fade-in-up delay-3">
+      
+        <!-- Project Card 1 -->
+<a href="project1/bikeRider.html" 
+  class="group relative bg-white border border-gray-200 rounded-3xl p-8 shadow-md hover:shadow-2xl hover:border-blue-400 transition-all duration-300 hover:-translate-y-2 hover:bg-blue-50/60">
+  <h3 class="text-2xl font-bold text-blue-700 mb-2 group-hover:text-blue-800 transition-colors duration-300">
+    🚴‍♂️ Urban Bike-Share Behavior Analysis Dashboard
+  </h3>
+  <p class="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
+    A detailed exploration of casual vs. member rider behavior using R, Excel, and Tableau.  
+    This project analyzes weekly ride trends, duration patterns, and top stations to guide  
+    business decisions in urban mobility.
+  </p>
+  <span class="text-blue-600 font-semibold group-hover:text-blue-800 transition-colors duration-300">
+    View Project →
+  </span>
+</a>
+
+<!-- Project Card 2 -->
+<!-- <a href="project2/index.html"
+  class="group relative bg-white border border-gray-200 rounded-3xl p-8 shadow-md hover:shadow-2xl hover:border-blue-400 transition-all duration-300 hover:-translate-y-2 hover:bg-blue-50/60">
+  <h3 class="text-2xl font-bold text-blue-700 mb-2 group-hover:text-blue-800 transition-colors duration-300">
+    📈 Performance Analysis
+  </h3>
+  <p class="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
+    Data-driven analysis of key performance indicators with visual summaries and actionable insights.
+  </p>
+  <span class="text-blue-600 font-semibold group-hover:text-blue-800 transition-colors duration-300">
+    View Project →
+  </span>
+</a> -->
+
+      <!-- Coming Soon -->
+      <div class="bg-gray-50 border border-gray-200 rounded-3xl p-8 text-center opacity-80 cursor-not-allowed">
+        <h3 class="text-2xl font-bold text-blue-700 mb-2">🚀 Coming Soon</h3>
+        <p class="text-gray-500">More advanced data projects will be added soon.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ASK / PREPARE / PROCESS SUMMARY CARDS -->
-    <section class="grid gap-6 grid-cols-1 md:grid-cols-3">
-
-      <div class="bg-white rounded-2xl p-5 shadow card">
-        <h3 class="font-semibold text-slate-800">Ask Phase</h3>
-        <p class="mt-2 text-slate-600 text-sm">
-          <strong>Guiding question:</strong> How do casual and member riders differ in their usage patterns across time,
-          location, and ride duration?
-          This helps with station placement, inventory, and targeted marketing decisions.
-        </p>
+  <!-- Footer -->
+  <footer class="bg-gray-200 text-center py-8 mt-auto shadow-inner">
+    <div class="max-w-7xl mx-auto px-4">
+      <h4 class="text-lg font-semibold text-gray-700 mb-2">Let’s Connect</h4>
+      <p class="text-gray-500 mb-4">Have a project in mind or need data insights? Get in touch via email or call.</p>
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-3 mb-4">
+        <a href="mailto:alimshaker678@gmail.com" class="text-blue-700 font-medium hover:underline">📧 alimshaker678@gmail.com</a>
+        <span class="hidden sm:block text-gray-400">•</span>
+        <a href="tel:+923461947475" class="text-blue-700 font-medium hover:underline">📞 +92-346-1947475</a>
       </div>
-
-      <div class="bg-white rounded-2xl p-5 shadow card">
-        <h3 class="font-semibold text-slate-800">Prepare Phase</h3>
-        <p class="mt-2 text-slate-600 text-sm">
-          <strong>Data Source:</strong> Public Divvy (Chicago) bike-share dataset — ride-level timestamps, station
-          names, rider type, rideable type.
-        </p>
-        <p class="mt-2 text-slate-600 text-sm">
-          <strong>Tools used:</strong> Excel (profiling), R (clean & transform), Tableau (visualization).
-        </p>
-      </div>
-
-      <div class="bg-white rounded-2xl p-5 shadow card">
-        <h3 class="font-semibold text-slate-800">Process Phase</h3>
-        <ul class="list-disc list-inside text-slate-600 mt-2 text-sm">
-          <li>Removed nulls & duplicates</li>
-          <li>Standardized columns & formats</li>
-          <li>Converted timestamps to day-of-week & duration</li>
-          <li>Created ride duration, rider flags, station counts</li>
-          <li>Validated geographic coordinates</li>
-        </ul>
-      </div>
-
-    </section>
-
-    <!-- ANALYZE / VISUALIZE / MODEL / SHARE / REFLECTION -->
-    <section class="grid gap-6 grid-cols-1 md:grid-cols-2">
-      <div class="bg-white rounded-2xl p-6 shadow card">
-        <h4 class="font-semibold text-slate-800">Analyze Phase</h4>
-        <ul class="list-disc list-inside mt-3 text-slate-600 text-sm">
-          <li>Weekly ride volume trends</li>
-          <li>Ride duration distribution by rider type</li>
-          <li>Top start & end stations</li>
-          <li>Geographic clustering of ride starts</li>
-        </ul>
-
-        <h4 class="font-semibold text-slate-800 mt-4">Model Phase (Lightweight)</h4>
-        <p class="mt-2 text-slate-600 text-sm">
-          No predictive model built — rule-based segmentation, duration binning, and station ranking logic were used to
-          generate insights.
-        </p>
-      </div>
-
-      <div class="bg-white rounded-2xl p-6 shadow card">
-        <h4 class="font-semibold text-slate-800">Visualize Phase</h4>
-        <p class="mt-2 text-slate-600 text-sm">
-          Four key visualizations were developed and used in the dashboard:
-        </p>
-        <ol class="list-decimal list-inside mt-2 text-slate-600 text-sm">
-          <li>Weekly Ride Volume by Rider Type (stacked bars)</li>
-          <li>Ride Duration Distribution (histogram / stacked)</li>
-          <li>Top 10 Start Stations by Rider Type</li>
-          <li>Top 10 End Stations by Rider Type</li>
-        </ol>
-
-        <h4 class="font-semibold text-slate-800 mt-4">Share Phase</h4>
-        <p class="mt-2 text-slate-600 text-sm">
-          Dashboards optimized for clarity, labeled counts, color-coded by rider type, and ready for Tableau Public or
-          PDF export.
-        </p>
-
-        <h4 class="font-semibold text-slate-800 mt-4">Reflection</h4>
-        <p class="mt-2 text-slate-600 text-sm">
-          Demonstrates asking meaningful questions, cleaning & structuring data, analyzing with R & Tableau, and
-          communicating insights effectively.
-        </p>
-      </div>
-    </section>
-
-    <!-- CHARTS: replicate the 4 visuals from image -->
-    <section class="bg-white rounded-2xl p-6 shadow card">
-      <h3 class="font-semibold text-slate-800 mb-4">Visual Dashboard</h3>
-      <p class="text-sm text-slate-600 mb-4">Below are the key performance visualizations from the project dashboard,
-        summarizing rider behavior and trends.</p>
-
-      <div class="grid gap-6 grid-cols-1 lg:grid-cols-2">
-        <!-- Weekly Volume -->
-        <div class="bg-slate-50 rounded p-4">
-          <div class="flex justify-between items-center mb-2">
-            <h4 class="font-medium text-slate-800">Weekly Ride Volume by Rider Type</h4>
-            <div class="text-xs text-slate-500">Count of rides</div>
-          </div>
-          <canvas id="weeklyVolume" class="chart-canvas"></canvas>
-          <p class="text-xs text-slate-500 mt-3">Casual = orange; Member = blue. Casual peaks on weekends.</p>
-        </div>
-
-        <!-- Top Start Stations -->
-        <div class="bg-slate-50 rounded p-4 overflow-auto">
-          <div class="flex justify-between items-center mb-2">
-            <h4 class="font-medium text-slate-800">Top 10 Start Stations by Rider Type</h4>
-            <div class="text-xs text-slate-500">Number of rides</div>
-          </div>
-          <canvas id="topStartStations" class="chart-canvas"></canvas>
-          <p class="text-xs text-slate-500 mt-3">Bars grouped by rider type — long orange bars indicate heavy casual
-            usage at popular locations.</p>
-        </div>
-
-        <!-- Duration Distribution -->
-        <div class="bg-slate-50 rounded p-4">
-          <div class="flex justify-between items-center mb-2">
-            <h4 class="font-medium text-slate-800">Ride Duration Distribution</h4>
-            <div class="text-xs text-slate-500">Ride duration (mins)</div>
-          </div>
-          <canvas id="durationDist" class="chart-canvas"></canvas>
-          <p class="text-xs text-slate-500 mt-3">Histogram bins show casual rides are longer and more variable.</p>
-        </div>
-
-        <!-- Top End Stations -->
-        <div class="bg-slate-50 rounded p-4 overflow-auto">
-          <div class="flex justify-between items-center mb-2">
-            <h4 class="font-medium text-slate-800">Top 10 End Stations by Rider Type</h4>
-            <div class="text-xs text-slate-500">Number of rides</div>
-          </div>
-          <canvas id="topEndStations" class="chart-canvas"></canvas>
-          <p class="text-xs text-slate-500 mt-3">End station ranking mirrors start station trends; helpful for
-            rebalancing logistics.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- METHOD / NOTES (from PDF) -->
-    <section class="bg-white rounded-2xl p-6 shadow card">
-      <h4 class="font-semibold text-slate-800">Process & Methods (detailed)</h4>
-      <ul class="list-disc list-inside mt-3 text-slate-600 text-sm space-y-1">
-        <li>Removed nulls and duplicates.</li>
-        <li>Standardized column names and formats.</li>
-        <li>Converted timestamps to day-of-week and duration metrics.</li>
-        <li>Created new variables: ride duration (minutes), rider type flags, station usage counts.</li>
-        <li>Validated geographic coordinates for mapping.</li>
-      </ul>
-
-      <h4 class="font-semibold text-slate-800 mt-4">Exploratory Analysis</h4>
-      <p class="mt-2 text-slate-600 text-sm">
-        Weekly ride volumes, ride duration distributions by rider type, top start/end stations, and geographic
-        clustering were explored.
-      </p>
-    </section>
-
-    <!-- CONTACT / FOOTER CTA -->
-    <!-- <section class="bg-white rounded-2xl p-6 shadow card flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-      <div>
-        <h4 class="font-semibold text-slate-800">Want the exact data behind these charts?</h4>
-        <p class="mt-2 text-slate-600 text-sm">Provide the CSV/Excel or Tableau export and I will update charts with exact numeric values and regenerate the visuals and downloadable images.</p>
-      </div>
-      <div class="flex items-center gap-3">
-        <a href="Ali_Muhammad_Capstone_Portfolio.pdf.pdf" download class="bg-sky-600 text-white px-4 py-2 rounded-full font-medium shadow">Download PDF</a>
-        <a href="mailto:example@example.com" class="bg-white border border-slate-200 px-4 py-2 rounded-full text-slate-700">Contact</a>
-      </div>
-    </section> -->
-
-  </main>
-
-  <footer class="bg-gradient-to-r from-sky-600 to-indigo-600 text-white mt-12 py-6">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <p class="text-sm opacity-90">
-        © 2025 <span class="font-semibold">Ali Muhammad</span> — Capstone Portfolio
-      </p>
-      <p class="text-xs mt-1 opacity-80">
-        Data Visualizations and Insights
-      </p>
+      <p class="text-gray-500 text-sm">Created by <span class="text-blue-700 font-semibold">Ali Muhammad</span> © 2025</p>
     </div>
   </footer>
 
-  <!-- Chart.js initialization (estimated numeric data matched to visual proportions) -->
+  <!-- Scroll Animation Script -->
   <script>
-    // Colors
-    const CASUAL = '#F59E0B'; // orange
-    const MEMBER = '#3B82F6'; // blue
-    const GRID = '#E6EEF8';
-
-    // Register datalabels plugin
-    Chart.register(ChartDataLabels);
-
-    //
-    // Chart 1: Weekly Ride Volume by Rider Type
-    //
-    const ctxWeekly = document.getElementById('weeklyVolume').getContext('2d');
-    const weeklyVolume = new Chart(ctxWeekly, {
-      type: 'bar',
-      data: {
-        labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        datasets: [
-          { label: 'Casual', data: [22000, 32000, 36000, 38000, 37000, 34000, 24000], backgroundColor: CASUAL, stack: 'rides' },
-          { label: 'Member', data: [8000, 12000, 14000, 15000, 14500, 12500, 9000], backgroundColor: MEMBER, stack: 'rides' }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { position: 'top' } },
-        scales: {
-          x: {
-            stacked: true,
-            grid: { display: false },
-            title: {
-              display: true,
-              text: 'Day of Week',
-              color: '#475569',
-              font: { size: 13, style: 'italic' },
-              padding: { top: 8 }
-            }
-          },
-          y: {
-            stacked: true,
-            grid: { color: GRID },
-            beginAtZero: true,
-            min: 0,
-            max: 60000,
-            ticks: {
-              stepSize: 20000,
-              callback: (v) => v / 1000 + 'k'
-            },
-            title: {
-              display: true,
-              text: 'Number of Rides',
-              color: '#475569',
-              font: { size: 13, style: 'italic' },
-              padding: { bottom: 8 }
-            }
-          }
+    const elements = document.querySelectorAll('.fade-in-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.animationPlayState = 'running';
         }
-      }
-    });
-
-    //
-    // Chart 2: Top Start Stations by Rider Type (with numeric labels)
-    //
-    const startStations = [
-      'Canal St & Adams',
-      'Clinton St & Madison',
-      'Clinton St & Wabash',
-      'Kingsbury St & Kinzie',
-      'Columbus Dr & Randolph',
-      'Franklin St & Monroe',
-      'Canal St & Madison',
-      'Clinton St & Lake',
-      'HQ QR',
-      'Larrabee St & Kinzie'
-    ];
-
-    const startCasual = [7586, 6546, 5823, 4491, 4099, 3580, 3496, 3404, 3556, 3374];
-    const startMember = [227, 251, 118, 135, 326, 131, 141, 176, 1, 176];
-
-    const ctxStart = document.getElementById('topStartStations').getContext('2d');
-    const topStartStations = new Chart(ctxStart, {
-      type: 'bar',
-      data: {
-        labels: startStations,
-        datasets: [
-          { label: 'Casual', data: startCasual, backgroundColor: CASUAL, stack: 'rides' },
-          { label: 'Member', data: startMember, backgroundColor: MEMBER, stack: 'rides' }
-        ]
-      },
-      options: {
-        indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            stacked: true,
-            min: 0,
-            max: 8000,
-            grid: { color: GRID },
-            ticks: {
-              stepSize: 1000,
-              callback: (v) => (v >= 1000 ? v / 1000 + 'k' : v)
-            },
-            title: {
-              display: true,
-              text: 'Number of Rides',
-              color: '#475569',
-              font: { size: 13, style: 'italic' },
-              padding: { top: 8 }
-            }
-          },
-          y: { stacked: true, grid: { display: false } }
-        },
-        plugins: {
-          legend: { position: 'top' },
-          datalabels: {
-            color: '#1E293B', // darker text for white background
-            font: {
-              weight: 'bold',
-              size: 10
-            },
-            formatter: (value) => value.toLocaleString(),
-            anchor: 'center',
-            align: 'center'
-          }
-        }
-      },
-      plugins: [ChartDataLabels]
-    });
-    // Chart 3: Ride Duration Distribution (final with vertical scale 0k–150k)
-    const ctxDuration = document.getElementById('durationDist').getContext('2d');
-    const durationDist = new Chart(ctxDuration, {
-      type: 'bar',
-      data: {
-        labels: ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', '60'],
-        datasets: [
-          {
-            label: 'Casual',
-            data: [
-              50000, 110000, 70000, 20000, 10000, 5000, 2500, 1200,
-              800, 500, 400, 300, 250
-            ],
-            backgroundColor: CASUAL,
-            stack: 'rides'
-          },
-          {
-            label: 'Member',
-            data: [
-              30000, 30000, 25000, 10000, 5000, 3000, 1500, 800,
-              300, 150, 100, 80, 60
-            ],
-            backgroundColor: MEMBER,
-            stack: 'rides'
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'top' },
-          datalabels: { display: false } // no numeric text inside bars
-        },
-        scales: {
-          x: {
-            stacked: true,
-            grid: { display: false },
-            title: {
-              display: true,
-              text: 'Ride Duration (minutes)',
-              color: '#475569',
-              font: { size: 13, style: 'italic' },
-              padding: { top: 8 }
-            }
-          },
-          y: {
-            stacked: true,
-            beginAtZero: true,
-            min: 0,
-            max: 150000,
-            ticks: {
-              stepSize: 50000,
-              callback: (v) => `${v / 1000}k`, // shows 0k, 50k, 100k, 150k
-              color: '#64748B', // subtle slate gray
-              font: { size: 12 }
-            },
-            title: {
-              display: true,
-              text: 'Count of Ride Id',
-              color: '#475569',
-              font: { size: 13, style: 'italic' },
-              padding: { bottom: 8 }
-            },
-            grid: { color: GRID }
-          }
-        }
-      },
-      plugins: [ChartDataLabels]
-    });
-    //
-// Chart 4: Top End Stations by Rider Type (final with padding fix)
-//
-const endStations = [
-  'Canal St & Adams',
-  'Clinton St & Madison',
-  'Clinton St & Wabash',
-  'Kingsbury St & Kinzie',
-  'Franklin St & Monroe',
-  'Canal St & Jackson',
-  'State St & Lake',
-  'Clark St & Wacker',
-  'St. Clair & Erie',
-  'HQ/Other'
-];
-
-const endCasual = [8158, 7010, 6644, 4495, 3672, 3613, 3517, 3463, 3555, 3301];
-const endMember = [165, 156, 210, 120, 555, 135, 189, 183, 2, 317];
-
-const ctxEnd = document.getElementById('topEndStations').getContext('2d');
-const topEndStations = new Chart(ctxEnd, {
-  type: 'bar',
-  data: {
-    labels: endStations,
-    datasets: [
-      { label: 'Casual', data: endCasual, backgroundColor: CASUAL, stack: 'rides' },
-      { label: 'Member', data: endMember, backgroundColor: MEMBER, stack: 'rides' }
-    ]
-  },
-  options: {
-    indexAxis: 'y',
-    responsive: true,
-    maintainAspectRatio: false,
-    layout: {
-      padding: { top: 25 } // ✅ adds space above chart so top label isn't cut off
-    },
-    scales: {
-      x: {
-        stacked: true,
-        min: 0,
-        max: 8000,
-        grid: { color: GRID },
-        ticks: {
-          stepSize: 1000,
-          callback: function(v) {
-            const val = v / 1000;
-            return Number.isInteger(val) ? val + 'k' : val.toFixed(1) + 'k';
-          }
-        },
-        title: {
-          display: true,
-          text: 'Number of Rides',
-          color: '#475569',
-          font: { size: 13, style: 'italic' },
-          padding: { top: 8 }
-        }
-      },
-      y: { stacked: true, grid: { display: false } }
-    },
-    plugins: {
-      legend: { position: 'top' },
-      datalabels: {
-        color: '#1E293B',
-        font: { weight: 'bold', size: 10 },
-        formatter: (value) => value.toLocaleString(),
-        anchor: 'center',
-        align: 'center',
-        clamp: true, // ✅ ensures labels stay inside chart area
-        clip: false  // ✅ prevents top label from getting cut off
-      }
-    }
-  },
-  plugins: [ChartDataLabels]
-});
-
+      });
+    }, { threshold: 0.1 });
+    elements.forEach(el => observer.observe(el));
   </script>
 
 </body>
-
 </html>

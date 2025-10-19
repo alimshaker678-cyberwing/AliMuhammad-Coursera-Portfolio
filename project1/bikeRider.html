@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ali Muhammad — Capstone Portfolio</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(2, 6, 23, 0.08);
+    }
+
+    .chart-canvas {
+      width: 100% !important;
+      height: 260px !important;
+    }
+
+    @media (min-width: 1024px) {
+      .chart-canvas {
+        height: 260px !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-gray-800">
+
+  <!-- HERO -->
+  <header class="bg-gradient-to-r from-sky-600 to-indigo-600 text-white py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div>
+          <h1 class="text-3xl lg:text-4xl font-semibold">Ali Muhammad</h1>
+          <p class="mt-1 opacity-90">Analyst — Google Data Analytics Professional Certificate</p>
+          <p class="mt-3 max-w-2xl text-sm lg:text-base opacity-90">
+            I’m a data analyst with a master’s degree in Urdu and a passion for clear, impactful communication.
+            I specialize in Tableau, R, Excel, and SQL, and I’m expanding with Python and Power BI. I design dashboards
+            that balance usability, aesthetics, and business relevance.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="../pdf/Ali_Muhammad_Capstone_Portfolio.pdf.pdf" download 
+            class="inline-block bg-white text-sky-700 hover:bg-sky-50 px-4 py-2 rounded-full font-medium shadow">
+            📄 Download Portfolio PDF
+          </a>
+          <a href="#project"
+            class="inline-block bg-white/10 border border-white/20 text-white px-4 py-2 rounded-full hover:bg-white/20">
+            View Project
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <main id="project" class="max-w-6xl mx-auto px-6 mt-8 mb-16 space-y-8">
+    <!-- PROJECT SUMMARY -->
+    <section class="bg-white rounded-2xl p-6 shadow card">
+      <div class="md:flex md:items-start md:gap-8">
+        <div class="flex-1">
+          <h2 class="text-xl font-semibold text-slate-800">Capstone Portfolio: Bike-Share Behavior Analysis</h2>
+          <p class="mt-2 text-slate-600">
+            <strong>Project Title:</strong> Understanding Rider Behavior in Urban Bike-Share Systems<br>
+            <strong>Analyst:</strong> Ali Muhammad<br>
+            <strong>Certificate:</strong> Google Data Analytics Professional Certificate
+          </p>
+        </div>
+
+        <div class="mt-4 md:mt-0 text-sm text-slate-500">
+          <p><strong>Focus:</strong> rider behavior, fraud detection, and gaming analytics (portfolio projects)</p>
+          <p class="mt-2">I emphasize accessibility (high-contrast visuals, direct labeling) and stakeholder-focused
+            storytelling.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ASK / PREPARE / PROCESS SUMMARY CARDS -->
+    <section class="grid gap-6 grid-cols-1 md:grid-cols-3">
+
+      <div class="bg-white rounded-2xl p-5 shadow card">
+        <h3 class="font-semibold text-slate-800">Ask Phase</h3>
+        <p class="mt-2 text-slate-600 text-sm">
+          <strong>Guiding question:</strong> How do casual and member riders differ in their usage patterns across time,
+          location, and ride duration?
+          This helps with station placement, inventory, and targeted marketing decisions.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 shadow card">
+        <h3 class="font-semibold text-slate-800">Prepare Phase</h3>
+        <p class="mt-2 text-slate-600 text-sm">
+          <strong>Data Source:</strong> Public Divvy (Chicago) bike-share dataset — ride-level timestamps, station
+          names, rider type, rideable type.
+        </p>
+        <p class="mt-2 text-slate-600 text-sm">
+          <strong>Tools used:</strong> Excel (profiling), R (clean & transform), Tableau (visualization).
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 shadow card">
+        <h3 class="font-semibold text-slate-800">Process Phase</h3>
+        <ul class="list-disc list-inside text-slate-600 mt-2 text-sm">
+          <li>Removed nulls & duplicates</li>
+          <li>Standardized columns & formats</li>
+          <li>Converted timestamps to day-of-week & duration</li>
+          <li>Created ride duration, rider flags, station counts</li>
+          <li>Validated geographic coordinates</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- ANALYZE / VISUALIZE / MODEL / SHARE / REFLECTION -->
+    <section class="grid gap-6 grid-cols-1 md:grid-cols-2">
+      <div class="bg-white rounded-2xl p-6 shadow card">
+        <h4 class="font-semibold text-slate-800">Analyze Phase</h4>
+        <ul class="list-disc list-inside mt-3 text-slate-600 text-sm">
+          <li>Weekly ride volume trends</li>
+          <li>Ride duration distribution by rider type</li>
+          <li>Top start & end stations</li>
+          <li>Geographic clustering of ride starts</li>
+        </ul>
+
+        <h4 class="font-semibold text-slate-800 mt-4">Model Phase (Lightweight)</h4>
+        <p class="mt-2 text-slate-600 text-sm">
+          No predictive model built — rule-based segmentation, duration binning, and station ranking logic were used to
+          generate insights.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 shadow card">
+        <h4 class="font-semibold text-slate-800">Visualize Phase</h4>
+        <p class="mt-2 text-slate-600 text-sm">
+          Four key visualizations were developed and used in the dashboard:
+        </p>
+        <ol class="list-decimal list-inside mt-2 text-slate-600 text-sm">
+          <li>Weekly Ride Volume by Rider Type (stacked bars)</li>
+          <li>Ride Duration Distribution (histogram / stacked)</li>
+          <li>Top 10 Start Stations by Rider Type</li>
+          <li>Top 10 End Stations by Rider Type</li>
+        </ol>
+
+        <h4 class="font-semibold text-slate-800 mt-4">Share Phase</h4>
+        <p class="mt-2 text-slate-600 text-sm">
+          Dashboards optimized for clarity, labeled counts, color-coded by rider type, and ready for Tableau Public or
+          PDF export.
+        </p>
+
+        <h4 class="font-semibold text-slate-800 mt-4">Reflection</h4>
+        <p class="mt-2 text-slate-600 text-sm">
+          Demonstrates asking meaningful questions, cleaning & structuring data, analyzing with R & Tableau, and
+          communicating insights effectively.
+        </p>
+      </div>
+    </section>
+
+    <!-- CHARTS: replicate the 4 visuals from image -->
+    <section class="bg-white rounded-2xl p-6 shadow card">
+      <h3 class="font-semibold text-slate-800 mb-4">Visual Dashboard</h3>
+      <p class="text-sm text-slate-600 mb-4">Below are the key performance visualizations from the project dashboard,
+        summarizing rider behavior and trends.</p>
+
+      <div class="grid gap-6 grid-cols-1 lg:grid-cols-2">
+        <!-- Weekly Volume -->
+        <div class="bg-slate-50 rounded p-4">
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-medium text-slate-800">Weekly Ride Volume by Rider Type</h4>
+            <div class="text-xs text-slate-500">Count of rides</div>
+          </div>
+          <canvas id="weeklyVolume" class="chart-canvas"></canvas>
+          <p class="text-xs text-slate-500 mt-3">Casual = orange; Member = blue. Casual peaks on weekends.</p>
+        </div>
+
+        <!-- Top Start Stations -->
+        <div class="bg-slate-50 rounded p-4 overflow-auto">
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-medium text-slate-800">Top 10 Start Stations by Rider Type</h4>
+            <div class="text-xs text-slate-500">Number of rides</div>
+          </div>
+          <canvas id="topStartStations" class="chart-canvas"></canvas>
+          <p class="text-xs text-slate-500 mt-3">Bars grouped by rider type — long orange bars indicate heavy casual
+            usage at popular locations.</p>
+        </div>
+
+        <!-- Duration Distribution -->
+        <div class="bg-slate-50 rounded p-4">
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-medium text-slate-800">Ride Duration Distribution</h4>
+            <div class="text-xs text-slate-500">Ride duration (mins)</div>
+          </div>
+          <canvas id="durationDist" class="chart-canvas"></canvas>
+          <p class="text-xs text-slate-500 mt-3">Histogram bins show casual rides are longer and more variable.</p>
+        </div>
+
+        <!-- Top End Stations -->
+        <div class="bg-slate-50 rounded p-4 overflow-auto">
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-medium text-slate-800">Top 10 End Stations by Rider Type</h4>
+            <div class="text-xs text-slate-500">Number of rides</div>
+          </div>
+          <canvas id="topEndStations" class="chart-canvas"></canvas>
+          <p class="text-xs text-slate-500 mt-3">End station ranking mirrors start station trends; helpful for
+            rebalancing logistics.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHOD / NOTES (from PDF) -->
+    <section class="bg-white rounded-2xl p-6 shadow card">
+      <h4 class="font-semibold text-slate-800">Process & Methods (detailed)</h4>
+      <ul class="list-disc list-inside mt-3 text-slate-600 text-sm space-y-1">
+        <li>Removed nulls and duplicates.</li>
+        <li>Standardized column names and formats.</li>
+        <li>Converted timestamps to day-of-week and duration metrics.</li>
+        <li>Created new variables: ride duration (minutes), rider type flags, station usage counts.</li>
+        <li>Validated geographic coordinates for mapping.</li>
+      </ul>
+
+      <h4 class="font-semibold text-slate-800 mt-4">Exploratory Analysis</h4>
+      <p class="mt-2 text-slate-600 text-sm">
+        Weekly ride volumes, ride duration distributions by rider type, top start/end stations, and geographic
+        clustering were explored.
+      </p>
+    </section>
+
+    
+  </main>
+
+  <footer class="bg-gradient-to-r from-sky-600 to-indigo-600 text-white mt-12 py-6">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p class="text-sm opacity-90">
+        © 2025 <span class="font-semibold">Ali Muhammad</span> — Capstone Portfolio
+      </p>
+      <p class="text-xs mt-1 opacity-80">
+        Data Visualizations and Insights
+      </p>
+    </div>
+  </footer>
+
+  <!-- Chart.js initialization (estimated numeric data matched to visual proportions) -->
+  <script>
+    // Colors
+    const CASUAL = '#F59E0B'; // orange
+    const MEMBER = '#3B82F6'; // blue
+    const GRID = '#E6EEF8';
+
+    // Register datalabels plugin
+    Chart.register(ChartDataLabels);
+
+    //
+    // Chart 1: Weekly Ride Volume by Rider Type
+    //
+    const ctxWeekly = document.getElementById('weeklyVolume').getContext('2d');
+    const weeklyVolume = new Chart(ctxWeekly, {
+      type: 'bar',
+      data: {
+        labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        datasets: [
+          { label: 'Casual', data: [22000, 32000, 36000, 38000, 37000, 34000, 24000], backgroundColor: CASUAL, stack: 'rides' },
+          { label: 'Member', data: [8000, 12000, 14000, 15000, 14500, 12500, 9000], backgroundColor: MEMBER, stack: 'rides' }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'top' } },
+        scales: {
+          x: {
+            stacked: true,
+            grid: { display: false },
+            title: {
+              display: true,
+              text: 'Day of Week',
+              color: '#475569',
+              font: { size: 13, style: 'italic' },
+              padding: { top: 8 }
+            }
+          },
+          y: {
+            stacked: true,
+            grid: { color: GRID },
+            beginAtZero: true,
+            min: 0,
+            max: 60000,
+            ticks: {
+              stepSize: 20000,
+              callback: (v) => v / 1000 + 'k'
+            },
+            title: {
+              display: true,
+              text: 'Number of Rides',
+              color: '#475569',
+              font: { size: 13, style: 'italic' },
+              padding: { bottom: 8 }
+            }
+          }
+        }
+      }
+    });
+
+    //
+    // Chart 2: Top Start Stations by Rider Type (with numeric labels)
+    //
+    const startStations = [
+      'Canal St & Adams',
+      'Clinton St & Madison',
+      'Clinton St & Wabash',
+      'Kingsbury St & Kinzie',
+      'Columbus Dr & Randolph',
+      'Franklin St & Monroe',
+      'Canal St & Madison',
+      'Clinton St & Lake',
+      'HQ QR',
+      'Larrabee St & Kinzie'
+    ];
+
+    const startCasual = [7586, 6546, 5823, 4491, 4099, 3580, 3496, 3404, 3556, 3374];
+    const startMember = [227, 251, 118, 135, 326, 131, 141, 176, 1, 176];
+
+    const ctxStart = document.getElementById('topStartStations').getContext('2d');
+    const topStartStations = new Chart(ctxStart, {
+      type: 'bar',
+      data: {
+        labels: startStations,
+        datasets: [
+          { label: 'Casual', data: startCasual, backgroundColor: CASUAL, stack: 'rides' },
+          { label: 'Member', data: startMember, backgroundColor: MEMBER, stack: 'rides' }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            stacked: true,
+            min: 0,
+            max: 8000,
+            grid: { color: GRID },
+            ticks: {
+              stepSize: 1000,
+              callback: (v) => (v >= 1000 ? v / 1000 + 'k' : v)
+            },
+            title: {
+              display: true,
+              text: 'Number of Rides',
+              color: '#475569',
+              font: { size: 13, style: 'italic' },
+              padding: { top: 8 }
+            }
+          },
+          y: { stacked: true, grid: { display: false } }
+        },
+        plugins: {
+          legend: { position: 'top' },
+          datalabels: {
+            color: '#1E293B', // darker text for white background
+            font: {
+              weight: 'bold',
+              size: 10
+            },
+            formatter: (value) => value.toLocaleString(),
+            anchor: 'center',
+            align: 'center'
+          }
+        }
+      },
+      plugins: [ChartDataLabels]
+    });
+    // Chart 3: Ride Duration Distribution (final with vertical scale 0k–150k)
+    const ctxDuration = document.getElementById('durationDist').getContext('2d');
+    const durationDist = new Chart(ctxDuration, {
+      type: 'bar',
+      data: {
+        labels: ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', '60'],
+        datasets: [
+          {
+            label: 'Casual',
+            data: [
+              50000, 110000, 70000, 20000, 10000, 5000, 2500, 1200,
+              800, 500, 400, 300, 250
+            ],
+            backgroundColor: CASUAL,
+            stack: 'rides'
+          },
+          {
+            label: 'Member',
+            data: [
+              30000, 30000, 25000, 10000, 5000, 3000, 1500, 800,
+              300, 150, 100, 80, 60
+            ],
+            backgroundColor: MEMBER,
+            stack: 'rides'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'top' },
+          datalabels: { display: false } // no numeric text inside bars
+        },
+        scales: {
+          x: {
+            stacked: true,
+            grid: { display: false },
+            title: {
+              display: true,
+              text: 'Ride Duration (minutes)',
+              color: '#475569',
+              font: { size: 13, style: 'italic' },
+              padding: { top: 8 }
+            }
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true,
+            min: 0,
+            max: 150000,
+            ticks: {
+              stepSize: 50000,
+              callback: (v) => `${v / 1000}k`, // shows 0k, 50k, 100k, 150k
+              color: '#64748B', // subtle slate gray
+              font: { size: 12 }
+            },
+            title: {
+              display: true,
+              text: 'Count of Ride Id',
+              color: '#475569',
+              font: { size: 13, style: 'italic' },
+              padding: { bottom: 8 }
+            },
+            grid: { color: GRID }
+          }
+        }
+      },
+      plugins: [ChartDataLabels]
+    });
+    //
+// Chart 4: Top End Stations by Rider Type (final with padding fix)
+//
+const endStations = [
+  'Canal St & Adams',
+  'Clinton St & Madison',
+  'Clinton St & Wabash',
+  'Kingsbury St & Kinzie',
+  'Franklin St & Monroe',
+  'Canal St & Jackson',
+  'State St & Lake',
+  'Clark St & Wacker',
+  'St. Clair & Erie',
+  'HQ/Other'
+];
+
+const endCasual = [8158, 7010, 6644, 4495, 3672, 3613, 3517, 3463, 3555, 3301];
+const endMember = [165, 156, 210, 120, 555, 135, 189, 183, 2, 317];
+
+const ctxEnd = document.getElementById('topEndStations').getContext('2d');
+const topEndStations = new Chart(ctxEnd, {
+  type: 'bar',
+  data: {
+    labels: endStations,
+    datasets: [
+      { label: 'Casual', data: endCasual, backgroundColor: CASUAL, stack: 'rides' },
+      { label: 'Member', data: endMember, backgroundColor: MEMBER, stack: 'rides' }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: {
+      padding: { top: 25 } // ✅ adds space above chart so top label isn't cut off
+    },
+    scales: {
+      x: {
+        stacked: true,
+        min: 0,
+        max: 8000,
+        grid: { color: GRID },
+        ticks: {
+          stepSize: 1000,
+          callback: function(v) {
+            const val = v / 1000;
+            return Number.isInteger(val) ? val + 'k' : val.toFixed(1) + 'k';
+          }
+        },
+        title: {
+          display: true,
+          text: 'Number of Rides',
+          color: '#475569',
+          font: { size: 13, style: 'italic' },
+          padding: { top: 8 }
+        }
+      },
+      y: { stacked: true, grid: { display: false } }
+    },
+    plugins: {
+      legend: { position: 'top' },
+      datalabels: {
+        color: '#1E293B',
+        font: { weight: 'bold', size: 10 },
+        formatter: (value) => value.toLocaleString(),
+        anchor: 'center',
+        align: 'center',
+        clamp: true, // ✅ ensures labels stay inside chart area
+        clip: false  // ✅ prevents top label from getting cut off
+      }
+    }
+  },
+  plugins: [ChartDataLabels]
+});
+
+  </script>
+
+</body>
+
+</html>

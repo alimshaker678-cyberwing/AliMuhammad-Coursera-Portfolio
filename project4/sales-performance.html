@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Sales Performance Dashboard • Ali Muhammad</title>
+  <meta name="description" content="Sales performance across products, regions, and time. Portfolio case study by Ali Muhammad."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in { opacity:0; transform: translateY(12px); transition: all 420ms ease; }
+    .fade-in.visible { opacity:1; transform: translateY(0); }
+    .soft-card { background: linear-gradient(180deg, rgba(255,255,255,.80), rgba(255,255,255,.70)); }
+    .chip { display:inline-flex; padding:.3rem .6rem; border-radius:999px; font-size:.78rem; border:1px solid rgba(16,185,129,.35); color:#065f46; background: rgba(16,185,129,.10); font-weight:600; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-slate-100 to-white text-slate-800">
+
+  <!-- HERO -->
+  <header class="relative border-b border-emerald-100 bg-gradient-to-r from-emerald-600 to-cyan-500 text-white">
+    <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Sales Performance Dashboard</h1>
+        <p class="text-emerald-50 mt-1">Portfolio Case Study • R/ggplot2 • Executive-ready visuals</p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="chip bg-white/20 text-white border-white/30">R / ggplot2</span>
+          <span class="chip bg-white/20 text-white border-white/30">dplyr • lubridate</span>
+          <span class="chip bg-white/20 text-white border-white/30">Data Storytelling</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SALES SUMMARY BANNER + KPIs (matches your screenshot but themed) -->
+  <section class="max-w-7xl mx-auto px-6 pt-6">
+    <div class="text-center my-4 fade-in">
+      <div class="bg-gradient-to-r from-emerald-600 to-cyan-500 text-white font-extrabold text-base md:text-lg py-3 rounded-md shadow">
+        SALE DASHBOARD YEAR 2024
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 max-w-3xl mx-auto">
+        <div class="bg-purple-700 text-white rounded-lg py-4 shadow">
+          <p class="uppercase tracking-wide text-xs font-semibold">Total Unit Sold</p>
+          <p class="text-2xl font-bold mt-1">4474</p>
+        </div>
+        <div class="bg-blue-900 text-white rounded-lg py-4 shadow">
+          <p class="uppercase tracking-wide text-xs font-semibold">Total Revenue</p>
+          <p class="text-2xl font-bold mt-1">4646.7K</p>
+        </div>
+        <div class="bg-cyan-700 text-white rounded-lg py-4 shadow">
+          <p class="uppercase tracking-wide text-xs font-semibold">Total Profit</p>
+          <p class="text-2xl font-bold mt-1">1188.4K</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="max-w-7xl mx-auto px-6 pb-4">
+    <div class="soft-card backdrop-blur-sm border border-slate-200 rounded-2xl p-6 shadow-sm fade-in">
+      <h2 class="text-xl font-semibold text-emerald-700">Overview</h2>
+      <p class="mt-2 text-slate-700">
+        The dashboard summarizes sales across <strong>products, regions, categories, and months</strong>. 
+        Data was cleaned with <em>dplyr</em>, dates normalized via <em>lubridate</em>, and aggregated for 
+        product/region/category and monthly trend views.
+      </p>
+    </div>
+  </section>
+<!-- CHART 1: Product + Region Revenue (composite) -->
+<section class="max-w-7xl mx-auto px-6 py-4">
+  <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm fade-in">
+    <h3 class="text-lg font-semibold text-slate-900">Sales Revenue Dashboard — Products & Regions</h3>
+    <p class="text-slate-700 mt-1">
+      Left: <em>Total Revenue by Product</em> ranks SKUs by revenue. Right: <em>Total Revenue by Region</em> compares performance across west, north, east, and south.
+    </p>
+    <img src="charts/chart1.jpeg"
+         alt="Composite chart: Total Revenue by Product (left) and Total Revenue by Region (right)"
+         class="w-full max-w-3xl mx-auto rounded-xl border border-slate-200 mt-4 shadow"/>
+  </div>
+</section>
+
+<!-- CHART 2: Total Profit by Region -->
+<section class="max-w-7xl mx-auto px-6 py-4">
+  <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm fade-in">
+    <h3 class="text-lg font-semibold text-slate-900">Total Profit by Region</h3>
+    <p class="text-slate-700 mt-1">
+      Profit distribution by region. Use alongside revenue to calibrate territory strategy and margin goals.
+    </p>
+    <img src="charts/chart2.jpeg"
+         alt="Total Profit by Region — horizontal bars with values for west, north, east, south"
+         class="w-full max-w-3xl mx-auto rounded-xl border border-slate-200 mt-4 shadow"/>
+  </div>
+</section>
+
+<!-- CHART 3: Category Breakdown — Revenue & Profit (composite) -->
+<section class="max-w-7xl mx-auto px-6 py-4">
+  <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm fade-in text-center">
+    <h3 class="text-lg font-semibold text-slate-900">Category Breakdown — Revenue & Profit</h3>
+    <p class="text-slate-700 mt-1 max-w-xl mx-auto">
+      Side-by-side panels for <em>Electronics</em>, <em>Accessories</em>, and <em>Office</em>; Electronics leads in both metrics.
+    </p>
+    <div class="flex justify-center mt-6">
+      <img src="charts/chart3.jpeg"
+           alt="Composite chart: Category Revenue (left) and Category Profit (right) for Electronics, Accessories, Office"
+           class="w-full max-w-[620px] rounded-xl border border-slate-200 shadow-lg object-contain"/>
+    </div>
+  </div>
+</section>
+
+<!-- CHART 4: Monthly Profit Trend -->
+<section class="max-w-7xl mx-auto px-6 py-4">
+  <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm fade-in">
+    <h3 class="text-lg font-semibold text-slate-900">Monthly Profit Trend</h3>
+    <p class="text-slate-700 mt-1">
+      Month-by-month profit with a <strong>June peak (~502K)</strong> and softer months around March–July.
+    </p>
+    <img src="charts/chart4.jpeg"
+         alt="Monthly Profit Trend — bars with month labels and values, highlighting peak month"
+         class="w-full max-w-3xl mx-auto rounded-xl border border-slate-200 mt-4 shadow"/>
+  </div>
+</section>
+
+<!-- CHART 5: Product-Wise Profit Analysis -->
+<section class="max-w-7xl mx-auto px-6 py-4">
+  <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm fade-in">
+    <h3 class="text-lg font-semibold text-slate-900">Product-Wise Profit Analysis</h3>
+    <p class="text-slate-700 mt-1">
+      Horizontal ranking highlights high-margin items (e.g., smartwatch, tablet) for pricing and promo strategy.
+    </p>
+    <img src="charts/chart5.jpeg"
+         alt="Product-Wise Profit Analysis — horizontal bars per product"
+         class="w-full max-w-3xl mx-auto rounded-xl border border-slate-200 mt-4 shadow"/>
+  </div>
+</section>
+
+  <!-- RESOURCE CARD: PDF DOWNLOAD ONLY (no inline embed) -->
+  <section class="max-w-7xl mx-auto px-6 pb-16">
+    <div class="rounded-2xl p-6 border border-slate-200 bg-white shadow-sm fade-in">
+      <div class="grid md:grid-cols-3 gap-4 items-center">
+        <div class="md:col-span-2">
+          <h4 class="text-lg font-semibold text-slate-900">Download the Full Case Study (PDF)</h4>
+          <p class="text-slate-600 text-sm mt-1">
+            Includes data cleaning steps, aggregation logic, and chart specifications for reproducibility.
+          </p>
+        </div>
+        <div class="text-right">
+          <a href="pdf/Sales Performance Dashboard.pdf" download
+             class="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-emerald-300 text-emerald-700 hover:bg-emerald-50">
+            ⬇️ Download PDF
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-100 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-6 text-sm flex flex-col md:flex-row items-center justify-between gap-2">
+      <p class="text-slate-700">Created by <strong class="text-emerald-700">Ali Muhammad</strong> — Data Visualization</p>
+      <div class="flex items-center gap-3">
+        <a href="mailto:alimshaker678@gmail.com" class="text-emerald-700 hover:underline">📧 alimshaker678@gmail.com</a>
+        <span class="text-slate-300">•</span>
+        <a href="tel:+923461947475" class="text-emerald-700 hover:underline">📞 +92-346-1947475</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <a href="#top" class="fixed bottom-6 right-6 px-3 py-2 rounded-full bg-emerald-600 text-white font-semibold shadow-lg hover:bg-emerald-500 transition">↑</a>
+
+  <script>
+    // Fade-in on scroll
+    const fades = document.querySelectorAll('.fade-in');
+    const io = new IntersectionObserver((entries)=> {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: .12 });
+    fades.forEach(f => io.observe(f));
+  </script>
+</body>
+</html>
